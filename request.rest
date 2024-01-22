@@ -1,0 +1,30 @@
+POST http://localhost:8000/users
+Content-Type: application/json
+
+{
+    "name": "kadek",
+    "email": "kadek1@gmail.com",
+    "password": "123456",
+    "confPassword": "123456"
+}
+
+###
+
+POST http://localhost:8000/login
+Content-Type: application/json
+
+{
+    "email": "kadek1@gmail.com",
+    "password": "123456"
+}
+
+###
+
+GET http://localhost:8000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJrYWRlayIsImVtYWlsIjoia2FkZWsxQGdtYWlsLmNvbSIsImlhdCI6MTcwNDk0OTEzMywiZXhwIjoxNzA0OTQ5MTUzfQ.cUXYVZK1csLvRPD1qfLrJ2dZLBiwJ0eAvT1C0E1h8yg
+
+###
+GET http://localhost:8000/token
+
+###
+DELETE http://localhost:8000/logout
