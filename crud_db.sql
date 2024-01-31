@@ -39,7 +39,8 @@ CREATE TABLE `users` (
 CREATE TABLE `reservasis` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `nomor` varchar(255) DEFAULT NULL,
+  `nomorWA` varchar(255) DEFAULT NULL,
+  `nomorHP` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -98,6 +99,48 @@ CREATE TABLE `asalsekolah` (
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `kelas` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `layanan` (
+  `id` int(11) NOT NULL,
+  `judullayanan` varchar(255) DEFAULT NULL,
+  `isilayanan` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `program` (
+  `id` int(11) NOT NULL,
+  `judulprogram` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `faq` (
+  `id` int(11) NOT NULL,
+  `pertanyaan` varchar(255) DEFAULT NULL,
+  `jawaban` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `keunggulan` (
+  `id` int(11) NOT NULL,
+  `slug` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Dumping data for table `users`
 --
@@ -110,10 +153,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `gender`, `createdAt`, `updatedAt`) 
 (9, 'Laura Updated', 'laura@gmail.com', 'Female', '2022-06-03 02:01:55', '2022-06-03 02:07:06');
 
 -- RESERVASI
-INSERT INTO `reservasis` (`id`, `name`, `nomor`, `createdAt`, `updatedAt`) VALUES
-(3, 'Kak Tisha', '+6285600422188', '2022-03-29 03:23:37', '2022-03-29 03:23:37'),
-(5, 'Kak Nia', '+6281216365729', '2022-03-29 03:23:37', '2022-03-29 03:23:37'),
-(6, 'Kak Iva', '+6282174144728', '2022-03-29 03:23:37', '2022-03-29 03:23:37'),
+INSERT INTO `reservasis` (`id`, `name`, `nomorWA`, `nomorHP` `createdAt`, `updatedAt`) VALUES
+(3, 'Kak Tisha', '+6285600422188', '085600422188', '2022-03-29 03:23:37', '2022-03-29 03:23:37'),
+(5, 'Kak Nia', '+6281216365729', '081216365729', '2022-03-29 03:23:37', '2022-03-29 03:23:37'),
+(6, 'Kak Iva', '+6282174144728', '082174144728', '2022-03-29 03:23:37', '2022-03-29 03:23:37'),
 
 -- WA
 INSERT INTO `whatsapps` (`id`, `name`, `nomor`, `createdAt`, `updatedAt`) VALUES
@@ -131,10 +174,25 @@ INSERT INTO `matapelajaran` (`id`, `name`, `slug`, `createdAt`, `updatedAt`) VAL
 INSERT INTO `kota`(`id`, `name`, `slug`, `image`, `url`, `createdAt`, `updateAt`) VALUES
 
 -- OFFICE
-INSERT INTO `kota`(`id`, `juduloffice`, `isioffice`, `createdAt`, `updateAt`) VALUES
+INSERT INTO `office`(`id`, `juduloffice`, `isioffice`, `createdAt`, `updateAt`) VALUES
 
 -- ASAL SEKOLAH
 INSERT INTO `asalsekolah` (`id`, `name`,`image`, `url`, `createdAt`, `updatedAt`) VALUES
+
+-- KELAS
+INSERT INTO `kelas`(`id`, `name`, `slug`, `image`, `url`, `createdAt`, `updateAt`) VALUES
+
+-- LAYANAN
+INSERT INTO `layanan`(`id`, `judullayanan`, `isilayanan`, `createdAt`, `updateAt`) VALUES
+
+-- PROGRAM
+INSERT INTO `program`(`id`, `judulprogram`, `createdAt`, `updateAt`) VALUES
+
+-- FAQ
+INSERT INTO `layanan`(`id`, `pertanyaan`, `jawaban`, `createdAt`, `updateAt`) VALUES
+
+-- KEUNGGULAN
+INSERT INTO `kelas`(`id`, `slug`, `image`, `url`, `createdAt`, `updateAt`) VALUES
 
 -- Indexes for dumped tables
 --
@@ -164,6 +222,21 @@ ALTER TABLE `office`
   ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `asalsekolah`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `kelas`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `layanan`
+  ADD PRIMARY KEY (`id`);
+  
+ALTER TABLE `program`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `faq`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `keunggulan`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -202,6 +275,26 @@ ALTER TABLE `office`
 COMMIT;
 
 ALTER TABLE `asalsekolah`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
+ALTER TABLE `kelas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
+ALTER TABLE `layanan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
+ALTER TABLE `program`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
+ALTER TABLE `faq`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
+ALTER TABLE `keunggulan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 

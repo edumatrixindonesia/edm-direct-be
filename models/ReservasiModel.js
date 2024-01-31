@@ -5,7 +5,8 @@ const {DataTypes} = Sequelize;
 
 const Reservasi = db.define('reservasis',{
     name: DataTypes.STRING,
-    nomor: DataTypes.STRING
+    nomorWA: DataTypes.STRING,
+    nomorHP: DataTypes.STRING
 },{
     freezeTableName:true
 });

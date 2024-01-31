@@ -1,73 +1,26 @@
-import express from "express"
-import db from "./config/Database.js"
-import router from "./routes/index.js"
-import cookieParser from "cookie-parser"
-import dotenv from "dotenv"
-import cors from "cors"
-import ReservasiRoute from "./routes/ReservasiRoute.js"
-// import OfficeRoute from "./routes/OfficeRoute.js"
-import SequelizeStore from "connect-session-sequelize"
-import session from "express-session";
-dotenv.config()
-
-const app = express();
-
-try {
-    await db.authenticate();
-    console.log('Database connect...');
-} catch (error) {
-    console.log(error);
-}
-
-const sessionStore = SequelizeStore(session.Store)
-
-const store = new sessionStore({
-    db:db
-})
-
-app.use(session({
-    secret: 'somevalue',
-    // secret: process.env.SESS_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    store: store,
-    cookie: {
-        secure: 'auto'
-    }
-}))
-
-app.use(cors({credentials:true, origin: 'http://localhost:3000'}))
-app.use(cookieParser())
-app.use(express.json())
-app.use(router)
-
-app.use(ReservasiRoute);
-// app.use(OfficeRoute);
-
-app.listen(8000, ()=> console.log("Server Running"))
-
-
-
-//================================
-
-
-// import express from "express";
-// import cors from "cors";
-// import FileUpload from "express-fileupload";
-// import session from "express-session";
-// import SequelizeStore from "connect-session-sequelize"
+// import express from "express"
+// import db from "./config/Database.js"
+// import router from "./routes/index.js"
+// import cookieParser from "cookie-parser"
 // import dotenv from "dotenv"
-// import cookieParser from "cookie-parser";
+// import cors from "cors"
 // import ReservasiRoute from "./routes/ReservasiRoute.js"
-// import db from "./config/Database.js";
-// // import AuthRoute from "./routes/AuthRoute.js"
-// import OfficeRoute from "./routes/OfficeRoute.js"
-// import asalSekolah from "./routes/AsalSekolahRoute.js"
+// // import OfficeRoute from "./routes/OfficeRoute.js"
+// import SequelizeStore from "connect-session-sequelize"
+// import session from "express-session";
 
-
-// dotenv.config();
+// import WhatsappRoute from "./routes/WaRoute.js"
+// dotenv.config()
 
 // const app = express();
+
+// try {
+//     await db.authenticate();
+//     console.log('Database connect...');
+// } catch (error) {
+//     console.log(error);
+// }
+
 // const sessionStore = SequelizeStore(session.Store)
 
 // const store = new sessionStore({
@@ -85,23 +38,100 @@ app.listen(8000, ()=> console.log("Server Running"))
 //     }
 // }))
 
-// // app.use(cors());
-// app.use(cors({
-//     credentials: true,
-//     origin: 'http://localhost:3000'
-// }));
+// app.use(cors({credentials:true, origin: 'http://localhost:3000'}))
+// // app.use(cors({ origin: '*'}))
+// app.use(cookieParser());
 // app.use(express.json());
-// app.use(FileUpload())
-// app.use(cookieParser())
+// app.use(router)
+
+// app.use(ReservasiRoute);
+// app.use(WhatsappRoute);
+// // app.use(OfficeRoute);
+
+// app.listen(8000, ()=> console.log("Server Running"))
 
 
-// // app.use(UserRoute);
-// app.use(ReservasiRoute)
-// // app.use(AuthRoute)
-// app.use(OfficeRoute)
-// app.use(asalSekolah)
+
+//================================
 
 
-// app.listen(process.env.APP_PORT, ()=> {
-//     console.log("Server up and running...");
-// })
+import express from "express";
+import cors from "cors";
+import FileUpload from "express-fileupload";
+import session from "express-session";
+import SequelizeStore from "connect-session-sequelize"
+import dotenv from "dotenv"
+import cookieParser from "cookie-parser";
+import ReservasiRoute from "./routes/ReservasiRoute.js"
+import db from "./config/Database.js";
+import path from 'path'
+import { fileURLToPath } from "url";
+// import AuthRoute from "./routes/AuthRoute.js"
+// import OfficeRoute from "./routes/OfficeRoute.js"
+import WhatsappRoute from "./routes/WaRoute.js"
+import UserRoute from "./routes/index.js"
+import OfficeRoute from "./routes/OfficeRoute.js"
+import GuruRoute from "./routes/GuruRoute.js"
+import AsalSekolah from "./routes/AsalSekolahRoute.js"
+import MapelRoute from "./routes/MapelRoute.js"
+import KotaRoute from "./routes/KotaRoute.js"
+import KelasRoute from "./routes/KelasRoute.js"
+import LayananRoute from "./routes/LayananRoute.js"
+import ProgramRoute from "./routes/ProgramRoute.js"
+import FaqRoute from "./routes/FaqRoute.js"
+import KeunggulanRoute from "./routes/KeunggulanRoute.js"
+
+
+dotenv.config();
+
+const app = express();
+const sessionStore = SequelizeStore(session.Store)
+
+const store = new sessionStore({
+    db:db
+})
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(session({
+    secret: 'somevalue',
+    // secret: process.env.SESS_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: store,
+    cookie: {
+        secure: 'auto'
+    }
+}))
+
+// app.use(cors());
+app.set('views', path.join(__dirname, 'views'));
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:3000'
+}));
+app.use(express.json());
+app.use(FileUpload());
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+app.use(ReservasiRoute)
+app.use(UserRoute)
+app.use(WhatsappRoute)
+app.use(OfficeRoute)
+app.use(GuruRoute)
+app.use(AsalSekolah)
+app.use(MapelRoute)
+app.use(KotaRoute)
+app.use(KelasRoute)
+app.use(LayananRoute)
+app.use(ProgramRoute)
+app.use(FaqRoute)
+app.use(KeunggulanRoute)
+
+
+app.listen(process.env.APP_PORT, ()=> {
+    console.log("Server up and running...");
+})

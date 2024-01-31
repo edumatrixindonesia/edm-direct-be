@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 
-const db = new Sequelize('crud_db', 'root', '', {
+const db = new Sequelize('edm_database', 'root', '', {
     host: "localhost",
     dialect: "mysql"
 })
