@@ -80,6 +80,9 @@ import LayananRoute from "./routes/LayananRoute.js"
 import ProgramRoute from "./routes/ProgramRoute.js"
 import FaqRoute from "./routes/FaqRoute.js"
 import KeunggulanRoute from "./routes/KeunggulanRoute.js"
+import FiturProgramRoute from "./routes/FiturProgramRoute.js"
+import PilihanProgramRoute from "./routes/PilihanProgramRoute.js"
+import PromoRoute from "./routes/PromoRoute.js"
 
 
 dotenv.config();
@@ -130,6 +133,9 @@ app.use(LayananRoute)
 app.use(ProgramRoute)
 app.use(FaqRoute)
 app.use(KeunggulanRoute)
+app.use(FiturProgramRoute)
+app.use(PilihanProgramRoute)
+app.use(PromoRoute)
 
 
 app.listen(process.env.APP_PORT, ()=> {

@@ -141,6 +141,30 @@ CREATE TABLE `keunggulan` (
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `fiturprogram` (
+  `id` int(11) NOT NULL,
+  `jumlah` varchar(255) DEFAULT NULL,
+  `isi` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `pilihanprogram` (
+  `id` int(11) NOT NULL,
+  `program_program` varchar(255) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `promo` (
+  `id` int(11) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Dumping data for table `users`
 --
@@ -194,6 +218,15 @@ INSERT INTO `layanan`(`id`, `pertanyaan`, `jawaban`, `createdAt`, `updateAt`) VA
 -- KEUNGGULAN
 INSERT INTO `kelas`(`id`, `slug`, `image`, `url`, `createdAt`, `updateAt`) VALUES
 
+-- FITUR PROGRAM
+INSERT INTO `fiturprogram` (`id`, `jumlah`, `isi`, `createdAt`, `updatedAt`) VALUES
+
+-- PILIHAN PROGRAM
+INSERT INTO `pilihanprogram` (`id`, `judul_program`, `link`, `createdAt`, `updatedAt`) VALUES
+
+-- PROMO
+INSERT INTO `promo`(`id`, `image`, `url`, `createdAt`, `updateAt`) VALUES
+
 -- Indexes for dumped tables
 --
 
@@ -237,6 +270,15 @@ ALTER TABLE `faq`
   ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `keunggulan`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `fiturprogram`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `pilihanprogram`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `promo`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -295,6 +337,18 @@ ALTER TABLE `faq`
 COMMIT;
 
 ALTER TABLE `keunggulan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
+ALTER TABLE `fiturprogram`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
+ALTER TABLE `pilihanprogram`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
+ALTER TABLE `promo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
