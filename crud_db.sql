@@ -165,6 +165,24 @@ CREATE TABLE `promo` (
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `kedinasan` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `deskripsi` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `tags` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `tags` (
+  `id` int(11) NOT NULL,
+  `tags` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Dumping data for table `users`
 --
@@ -227,6 +245,12 @@ INSERT INTO `pilihanprogram` (`id`, `judul_program`, `link`, `createdAt`, `updat
 -- PROMO
 INSERT INTO `promo`(`id`, `image`, `url`, `createdAt`, `updateAt`) VALUES
 
+-- KELAS
+INSERT INTO `kelas`(`id`, `name`, `deskripsi`, `image`, `tags`, `url`, `createdAt`, `updateAt`) VALUES
+
+-- TAGS
+INSERT INTO `layanan`(`id`, `tags`, `createdAt`, `updateAt`) VALUES
+
 -- Indexes for dumped tables
 --
 
@@ -279,6 +303,12 @@ ALTER TABLE `pilihanprogram`
   ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `promo`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `kedinasan`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `tags`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -349,6 +379,14 @@ ALTER TABLE `pilihanprogram`
 COMMIT;
 
 ALTER TABLE `promo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
+ALTER TABLE `kedinasan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
+ALTER TABLE `tags`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 

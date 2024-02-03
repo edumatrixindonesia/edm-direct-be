@@ -84,6 +84,11 @@ import FiturProgramRoute from "./routes/FiturProgramRoute.js"
 import PilihanProgramRoute from "./routes/PilihanProgramRoute.js"
 import PromoRoute from "./routes/PromoRoute.js"
 
+//TAGS
+import TagsRoute from "./routes/Tags/TagsKedinasanRoute.js"
+//KELAS
+import KedinasanRoute from "./routes/Kelas/KedinasanRoute.js"
+
 
 dotenv.config();
 
@@ -136,6 +141,13 @@ app.use(KeunggulanRoute)
 app.use(FiturProgramRoute)
 app.use(PilihanProgramRoute)
 app.use(PromoRoute)
+
+//TAGS
+app.use(TagsRoute)
+
+//KELAS
+app.use(KedinasanRoute)
+
 
 
 app.listen(process.env.APP_PORT, ()=> {
