@@ -73,7 +73,7 @@ CREATE TABLE `matapelajaran` (
 
 CREATE TABLE `kota` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `kota` varchar(255) DEFAULT NULL,
   `slug` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
@@ -165,7 +165,7 @@ CREATE TABLE `promo` (
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `kedinasan` (
+CREATE TABLE `pilihankelas` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `deskripsi` varchar(255) DEFAULT NULL,
@@ -179,6 +179,36 @@ CREATE TABLE `kedinasan` (
 CREATE TABLE `tags` (
   `id` int(11) NOT NULL,
   `tags` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `ibukotakecamatan` (
+  `id` int(11) NOT NULL,
+  `ibukota` varchar(255) DEFAULT NULL,
+  `kecamatan` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `ibukotakecamatan` (
+  `id` int(11) NOT NULL,
+  `ibukota` varchar(255) DEFAULT NULL,
+  `kecamatan` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `kelasperkota` (
+  `id` int(11) NOT NULL,
+  `jenjang_pendidikan` varchar(255) DEFAULT NULL,
+  `jangkauan_kota` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -213,7 +243,7 @@ INSERT INTO `gurus` (`id`, `name`, `image`, `deskripsi`, `url`, `createdAt`, `up
 INSERT INTO `matapelajaran` (`id`, `name`, `slug`, `createdAt`, `updatedAt`) VALUES
 
 -- KOTA
-INSERT INTO `kota`(`id`, `name`, `slug`, `image`, `url`, `createdAt`, `updateAt`) VALUES
+INSERT INTO `kota`(`id`, `kota`, `slug`, `image`, `url`, `createdAt`, `updateAt`) VALUES
 
 -- OFFICE
 INSERT INTO `office`(`id`, `juduloffice`, `isioffice`, `createdAt`, `updateAt`) VALUES
@@ -245,11 +275,17 @@ INSERT INTO `pilihanprogram` (`id`, `judul_program`, `link`, `createdAt`, `updat
 -- PROMO
 INSERT INTO `promo`(`id`, `image`, `url`, `createdAt`, `updateAt`) VALUES
 
--- KELAS
+-- PILIHAN KELAS
 INSERT INTO `kelas`(`id`, `name`, `deskripsi`, `image`, `tags`, `url`, `createdAt`, `updateAt`) VALUES
 
 -- TAGS
 INSERT INTO `layanan`(`id`, `tags`, `createdAt`, `updateAt`) VALUES
+
+-- IBUKOTA/KECAMATAN
+INSERT INTO `kota`(`id`, `ibukota`, `kecamatan`, `slug`, `image`, `url`, `createdAt`, `updateAt`) VALUES
+
+-- KELAS/KOTA
+INSERT INTO `kota`(`id`, `jenjang_pendidikan`, `jangkauan_kota`, `image`, `url`, `createdAt`, `updateAt`) VALUES
 
 -- Indexes for dumped tables
 --
@@ -305,10 +341,16 @@ ALTER TABLE `pilihanprogram`
 ALTER TABLE `promo`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `kedinasan`
+ALTER TABLE `pilihankelas`
   ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `tags`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `ibukotakecamatan`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `kelasperkota`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -382,11 +424,19 @@ ALTER TABLE `promo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
-ALTER TABLE `kedinasan`
+ALTER TABLE `pilihankelas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 ALTER TABLE `tags`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
+ALTER TABLE `ibukotakecamatan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
+ALTER TABLE `kelasperkota`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 

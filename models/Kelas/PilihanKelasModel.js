@@ -3,7 +3,7 @@ import db from "../../config/Database.js";
 
 const {DataTypes} = Sequelize;
 
-const Kedinasan = db.define('kedinasan',{
+const PilihanKelas = db.define('pilihankelas',{
     name: DataTypes.STRING,
     deskripsi: DataTypes.STRING,
     image: DataTypes.STRING,
@@ -13,7 +13,7 @@ const Kedinasan = db.define('kedinasan',{
     freezeTableName:true
 });
 
-export default Kedinasan;
+export default PilihanKelas;
 
 (async()=>{
     await db.sync();

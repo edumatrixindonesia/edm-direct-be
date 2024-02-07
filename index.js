@@ -87,7 +87,9 @@ import PromoRoute from "./routes/PromoRoute.js"
 //TAGS
 import TagsRoute from "./routes/Tags/TagsKedinasanRoute.js"
 //KELAS
-import KedinasanRoute from "./routes/Kelas/KedinasanRoute.js"
+import KedinasanRoute from "./routes/Kelas/PilihanKelasRoute.js"
+import IbuKotaKecamatan from "./routes/IbuKotaRoute.js"
+import KelasperKotaRoute from "./routes/KelasperKotaRoute.js"
 
 
 dotenv.config();
@@ -101,6 +103,10 @@ const store = new sessionStore({
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// app.get("/*", function(req, res) {
+//     res.sendFile(path.join(__dirname));
+//   });
 
 app.use(session({
     secret: 'somevalue',
@@ -141,12 +147,14 @@ app.use(KeunggulanRoute)
 app.use(FiturProgramRoute)
 app.use(PilihanProgramRoute)
 app.use(PromoRoute)
+app.use(IbuKotaKecamatan)
 
 //TAGS
-app.use(TagsRoute)
+app.use(TagsRoute);
 
 //KELAS
-app.use(KedinasanRoute)
+app.use(KedinasanRoute);
+app.use(KelasperKotaRoute);
 
 
 

@@ -5,7 +5,7 @@ import {
   updateKota,
   saveKota,
   deleteKota,
-} from "../controllers/KotaController.js";
+ } from "../controllers/KotaController.js";
 
 const router = express.Router();
 

@@ -3,8 +3,9 @@ import db from "../config/Database.js";
 
 const {DataTypes} = Sequelize;
 
-const Kota = db.define('kota',{
-    kota: DataTypes.STRING,
+const IbuKotaKecamatan = db.define('ibukotakecamatan',{
+    ibukota: DataTypes.STRING,
+    kecamatan: DataTypes.STRING,
     slug: DataTypes.STRING,
     image: DataTypes.STRING,
     url: DataTypes.STRING
@@ -12,7 +13,7 @@ const Kota = db.define('kota',{
     freezeTableName:true
 });
 
-export default Kota;
+export default IbuKotaKecamatan;
 
 (async()=>{
     await db.sync();
