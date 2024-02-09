@@ -9,10 +9,10 @@ import {
 
 const router = express.Router();
 
-router.get("/ibukota", getIbuKota);
-router.get("/ibukota/:id", getIbuKotaById);
-router.post("/ibukota", saveIbuKota);
-router.patch("/ibukota/:id", updateIbuKota);
-router.delete("/ibukota/:id", deleteIbuKota);
+router.get("/ibukotakab", getIbuKota);
+router.get("/ibukotakab/:id", getIbuKotaById);
+router.post("/ibukotakab", saveIbuKota);
+router.patch("/ibukotakab/:id", updateIbuKota);
+router.delete("/ibukotakab/:id", deleteIbuKota);
 
 export default router;

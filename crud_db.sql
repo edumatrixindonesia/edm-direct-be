@@ -67,6 +67,8 @@ CREATE TABLE `matapelajaran` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `slug` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -193,12 +195,13 @@ CREATE TABLE `ibukotakecamatan` (
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `ibukotakecamatan` (
+CREATE TABLE `ibukotakabupaten` (
   `id` int(11) NOT NULL,
   `ibukota` varchar(255) DEFAULT NULL,
-  `kecamatan` varchar(255) DEFAULT NULL,
+  `kota_kabupaten` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
+  `kota_id` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -282,7 +285,7 @@ INSERT INTO `kelas`(`id`, `name`, `deskripsi`, `image`, `tags`, `url`, `createdA
 INSERT INTO `layanan`(`id`, `tags`, `createdAt`, `updateAt`) VALUES
 
 -- IBUKOTA/KECAMATAN
-INSERT INTO `kota`(`id`, `ibukota`, `kecamatan`, `slug`, `image`, `url`, `createdAt`, `updateAt`) VALUES
+INSERT INTO `kota`(`id`, `ibukota`, `kota_kabupaten`, `kota_id`, `slug`, `image`, `url`, `createdAt`, `updateAt`) VALUES
 
 -- KELAS/KOTA
 INSERT INTO `kota`(`id`, `jenjang_pendidikan`, `jangkauan_kota`, `image`, `url`, `createdAt`, `updateAt`) VALUES

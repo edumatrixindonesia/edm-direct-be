@@ -5,7 +5,9 @@ const {DataTypes} = Sequelize;
 
 const Mapel = db.define('mata_pelajaran',{
     name: DataTypes.STRING,
-    slug: DataTypes.STRING
+    slug: DataTypes.STRING,
+    image: DataTypes.STRING,
+    url: DataTypes.STRING
 },{
     freezeTableName:true
 });

@@ -3,17 +3,18 @@ import db from "../config/Database.js";
 
 const {DataTypes} = Sequelize;
 
-const IbuKotaKecamatan = db.define('ibukotakecamatan',{
-    ibukota: DataTypes.STRING,
-    kecamatan: DataTypes.STRING,
+const IbuKotaKabupaten = db.define('ibukotakabupaten',{
+    // ibukota: DataTypes.STRING,
+    kota_kabupaten: DataTypes.STRING,
     slug: DataTypes.STRING,
     image: DataTypes.STRING,
-    url: DataTypes.STRING
+    url: DataTypes.STRING,
+    kota_id: DataTypes.STRING
 },{
     freezeTableName:true
 });
 
-export default IbuKotaKecamatan;
+export default IbuKotaKabupaten;
 
 (async()=>{
     await db.sync();

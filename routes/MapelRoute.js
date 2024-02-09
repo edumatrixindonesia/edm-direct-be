@@ -3,15 +3,15 @@ import {
   getMapel,
   getMapelById,
   updateMapel,
-  createMapel,
+  saveMapel,
   deleteMapel,
-} from "../controllers/MapelController.js";
+ } from "../controllers/MapelController.js";
 
 const router = express.Router();
 
 router.get("/matapelajaran", getMapel);
 router.get("/matapelajaran/:id", getMapelById);
-router.post("/matapelajaran", createMapel);
+router.post("/matapelajaran", saveMapel);
 router.patch("/matapelajaran/:id", updateMapel);
 router.delete("/matapelajaran/:id", deleteMapel);
 

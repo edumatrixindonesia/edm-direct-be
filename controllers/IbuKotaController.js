@@ -27,10 +27,11 @@ export const getIbuKotaById = async (req, res) => {
 export const saveIbuKota = (req, res) => {
   if (req.files === null)
     return res.status(400).json({ msg: "No File Uploaded" });
-  const name = req.body.title;
+  const kota_kabupaten = req.body.kota_kabupaten;
   const slug = req.body.slug;
   const file = req.files.file;
   const fileSize = file.data.length;
+  const kota_id = req.files.kota_id;
   const ext = path.extname(file.name);
   const fileName = file.md5 + ext;
   const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
@@ -45,10 +46,11 @@ export const saveIbuKota = (req, res) => {
     if (err) return res.status(500).json({ msg: err.message });
     try {
       await IbuKota.create({
-        name: name,
+        kota_kabupaten: kota_kabupaten,
         slug: slug,
         image: fileName,
         url: url,
+        kota_id: kota_id
       });
       res.status(201).json({ msg: "IbuKota Created Successfuly" });
     } catch (error) {
@@ -108,7 +110,7 @@ export const updateIbuKota = async (req, res) => {
 export const deleteIbuKota = async (req, res) => {
   const ibukota = await IbuKota.findOne({
     where: {
-      id: req.params.id,
+      id: req.params.id
     },
   });
   if (!ibukota) return res.status(404).json({ msg: "No Data Found" });
