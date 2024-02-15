@@ -9,7 +9,13 @@ const IbuKotaKabupaten = db.define('ibukotakabupaten',{
     slug: DataTypes.STRING,
     image: DataTypes.STRING,
     url: DataTypes.STRING,
-    kota_id: DataTypes.STRING
+    kota_id: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: "kota",
+            key: "id"
+        }
+    }
 },{
     freezeTableName:true
 });

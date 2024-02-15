@@ -29,6 +29,8 @@ export const saveGuru = (req, res) => {
     return res.status(400).json({ msg: "No File Uploaded" });
   const name = req.body.title;
   const deskripsi = req.body.deskripsi;
+  const universitas= req.body.universitas;
+  const topTitle= req.body.topTitle;
   const file = req.files?.file;
   const fileSize = file?.data?.length;
   const ext = path?.extname(file?.name);
@@ -47,6 +49,8 @@ export const saveGuru = (req, res) => {
       await Guru.create({
         name: name,
         deskripsi: deskripsi,
+        universitas: universitas,
+        topTitle: topTitle,
         image: fileName,
         url: url,
       });

@@ -57,7 +57,9 @@ CREATE TABLE `gurus` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `deskripsi` varchar(255) DEFAULT NULL,
+  `universitas` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
+  `img` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
@@ -201,7 +203,8 @@ CREATE TABLE `ibukotakabupaten` (
   `kota_kabupaten` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
-  `kota_id` varchar(255) DEFAULT NULL,
+  `kota_id` int(11) NOT NULL,
+  FOREIGN KEY (kota_id) REFERENCES kota(id)
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -210,6 +213,25 @@ CREATE TABLE `kelasperkota` (
   `id` int(11) NOT NULL,
   `jenjang_pendidikan` varchar(255) DEFAULT NULL,
   `jangkauan_kota` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `testimoni` (
+  `id` int(11) NOT NULL,
+  `name_siswa` varchar(255) DEFAULT NULL,
+  `judul_testi` varchar(255) DEFAULT NULL,
+  `deskripsi` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `guruthirdparty` (
+  `id` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
@@ -240,7 +262,7 @@ INSERT INTO `whatsapps` (`id`, `name`, `nomor`, `createdAt`, `updatedAt`) VALUES
 (6, 'Kak Iva', '+6282174144728', '2022-03-29 03:23:37', '2022-03-29 03:23:37'),
 
 -- GURU
-INSERT INTO `gurus` (`id`, `name`, `image`, `deskripsi`, `url`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `gurus` (`id`, `name`, `image`, `universitas`, `deskripsi`, `url`, `createdAt`, `updatedAt`) VALUES
 
 -- MATA PELAJARAN
 INSERT INTO `matapelajaran` (`id`, `name`, `slug`, `createdAt`, `updatedAt`) VALUES
@@ -289,6 +311,12 @@ INSERT INTO `kota`(`id`, `ibukota`, `kota_kabupaten`, `kota_id`, `slug`, `image`
 
 -- KELAS/KOTA
 INSERT INTO `kota`(`id`, `jenjang_pendidikan`, `jangkauan_kota`, `image`, `url`, `createdAt`, `updateAt`) VALUES
+
+-- TESTIMONI
+INSERT INTO `gurus` (`id`, `name_siswa`, `image`, `judul_testi`, `deskripsi`, `url`, `createdAt`, `updatedAt`) VALUES
+
+-- THIRD PARTY GURU
+INSERT INTO `gurus` (`id`, `image`, `url`, `createdAt`, `updatedAt`) VALUES
 
 -- Indexes for dumped tables
 --
@@ -354,6 +382,12 @@ ALTER TABLE `ibukotakecamatan`
   ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `kelasperkota`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `testimoni`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `thirdpartyguru`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -440,6 +474,14 @@ ALTER TABLE `ibukotakecamatan`
 COMMIT;
 
 ALTER TABLE `kelasperkota`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
+ALTER TABLE `testimoni`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+COMMIT;
+
+ALTER TABLE `thirdpartyguru`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 

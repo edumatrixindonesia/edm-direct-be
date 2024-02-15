@@ -83,13 +83,15 @@ import KeunggulanRoute from "./routes/KeunggulanRoute.js"
 import FiturProgramRoute from "./routes/FiturProgramRoute.js"
 import PilihanProgramRoute from "./routes/PilihanProgramRoute.js"
 import PromoRoute from "./routes/PromoRoute.js"
+import TestimoniRoute from "./routes/TestimoniRoute.js"
 
 //TAGS
 import TagsRoute from "./routes/Tags/TagsKedinasanRoute.js"
 //KELAS
 import KedinasanRoute from "./routes/Kelas/PilihanKelasRoute.js"
-import IbuKotaKecamatan from "./routes/IbuKotaRoute.js"
+import IbuKotaKab from "./routes/IbuKotaKabRoute.js"
 import KelasperKotaRoute from "./routes/KelasperKotaRoute.js"
+import ThirdPartyGuruRoute from "./routes/ThirdParty/ThirdPartyGuruRoute.js"
 
 
 dotenv.config();
@@ -147,7 +149,8 @@ app.use(KeunggulanRoute)
 app.use(FiturProgramRoute)
 app.use(PilihanProgramRoute)
 app.use(PromoRoute)
-app.use(IbuKotaKecamatan)
+app.use(IbuKotaKab)
+app.use(TestimoniRoute)
 
 //TAGS
 app.use(TagsRoute);
@@ -156,6 +159,8 @@ app.use(TagsRoute);
 app.use(KedinasanRoute);
 app.use(KelasperKotaRoute);
 
+//THIRD PARTY
+app.use(ThirdPartyGuruRoute)
 
 
 app.listen(process.env.APP_PORT, ()=> {

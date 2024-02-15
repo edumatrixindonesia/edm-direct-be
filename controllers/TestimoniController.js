@@ -1,19 +1,19 @@
-import IbuKota from "../models/IbuKotaModel.js";
+import Testimoni from "../models/TestimoniModel.js";
 import path from "path";
 import fs from "fs";
 
-export const getIbuKota = async (req, res) => {
+export const getTestimoni = async (req, res) => {
   try {
-    const response = await IbuKota.findAll();
+    const response = await Testimoni.findAll();
     res.json(response);
   } catch (error) {
     console.log(error.message);
   }
 };
 
-export const getIbuKotaById = async (req, res) => {
+export const getTestimoniById = async (req, res) => {
   try {
-    const response = await IbuKota.findOne({
+    const response = await Testimoni.findOne({
       where: {
         id: req.params.id,
       },
@@ -24,16 +24,16 @@ export const getIbuKotaById = async (req, res) => {
   }
 };
 
-export const saveIbuKota = (req, res) => {
+export const saveTestimoni = (req, res) => {
   if (req.files === null)
     return res.status(400).json({ msg: "No File Uploaded" });
-  const kota_kabupaten = req.body.kota_kabupaten;
-  const slug = req.body.slug;
-  const file = req.files.file;
-  const fileSize = file.data.length;
-  const kota_id = req.files.kota_id;
-  const ext = path.extname(file.name);
-  const fileName = file.md5 + ext;
+  const name_siswa = req.body.title;
+  const judul_testi = req.body.judul_testi
+  const deskripsi = req.body.deskripsi;
+  const file = req.files?.file;
+  const fileSize = file?.data?.length;
+  const ext = path?.extname(file?.name);
+  const fileName = file?.md5 + ext;
   const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
   const allowedType = [".png", ".jpg", ".jpeg"];
 
@@ -45,34 +45,34 @@ export const saveIbuKota = (req, res) => {
   file.mv(`./public/images/${fileName}`, async (err) => {
     if (err) return res.status(500).json({ msg: err.message });
     try {
-      await IbuKota.create({
-        kota_kabupaten: kota_kabupaten,
-        slug: slug,
+      await Testimoni.create({
+        name_siswa: name_siswa,
+        judul_testi: judul_testi,
+        deskripsi: deskripsi,
         image: fileName,
         url: url,
-        kota_id: kota_id
       });
-      res.status(201).json({ msg: "IbuKota Created Successfuly" });
+      res.status(201).json({ msg: "Testimoni Created Successfuly" });
     } catch (error) {
       console.log(error.message);
     }
   });
 };
 
-export const updateIbuKota = async (req, res) => {
-  const ibukota = await IbuKota.findOne({
+export const updateTestimoni = async (req, res) => {
+  const testimoni = await Testimoni.findOne({
     where: {
       id: req.params.id,
     },
   });
-  if (!ibukota) return res.status(404).json({ msg: "No Data Found" });
+  if (!testimoni) return res.status(404).json({ msg: "No Data Found" });
 
   let fileName = "";
   if (req.files === null) {
-    fileName = ibukota.image;
+    fileName = testimoni.image;
   } else {
-    const file = req.files.file;
-    const fileSize = file.data.length;
+    const file = req.files?.file;
+    const fileSize = file?.data.length;
     const ext = path.extname(file.name);
     fileName = file.md5 + ext;
     const allowedType = [".png", ".jpg", ".jpeg"];
@@ -82,7 +82,7 @@ export const updateIbuKota = async (req, res) => {
     if (fileSize > 5000000)
       return res.status(422).json({ msg: "Image must be less than 5 MB" });
 
-    const filepath = `./public/images/${ibukota.image}`;
+    const filepath = `./public/images/${testimoni.image}`;
     fs.unlinkSync(filepath);
 
     file.mv(`./public/images/${fileName}`, (err) => {
@@ -93,7 +93,7 @@ export const updateIbuKota = async (req, res) => {
   const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
 
   try {
-    await IbuKota.update(
+    await Testimoni.update(
       { name: name, image: fileName, url: url },
       {
         where: {
@@ -101,29 +101,29 @@ export const updateIbuKota = async (req, res) => {
         },
       }
     );
-    res.status(200).json({ msg: "IbuKota Updated Successfuly" });
+    res.status(200).json({ msg: "Testimoni Updated Successfuly" });
   } catch (error) {
     console.log(error.message);
   }
 };
 
-export const deleteIbuKota = async (req, res) => {
-  const ibukota = await IbuKota.findOne({
+export const deleteTestimoni = async (req, res) => {
+  const testimoni = await Testimoni.findOne({
     where: {
-      id: req.params.id
+      id: req.params.id,
     },
   });
-  if (!ibukota) return res.status(404).json({ msg: "No Data Found" });
+  if (!testimoni) return res.status(404).json({ msg: "No Data Found" });
 
   try {
-    const filepath = `./public/images/${ibukota.image}`;
+    const filepath = `./public/images/${testimoni.image}`;
     fs.unlinkSync(filepath);
-    await IbuKota.destroy({
+    await Testimoni.destroy({
       where: {
         id: req.params.id,
       },
     });
-    res.status(200).json({ msg: "IbuKota Deleted Successfuly" });
+    res.status(200).json({ msg: "Testimoni Deleted Successfuly" });
   } catch (error) {
     console.log(error.message);
   }
