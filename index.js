@@ -70,11 +70,10 @@ app.use(session({
 }))
 
 app.set('views', path.join(__dirname, 'views'));
-// app.use(cors({
-//     credentials: true,
-//     origin: 'http://localhost:3000'
-// }));
-app.use(cors())
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:3000'
+}));
 app.use(express.json());
 app.use(FileUpload());
 app.use(cookieParser());
