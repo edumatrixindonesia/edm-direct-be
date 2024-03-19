@@ -4,7 +4,8 @@ import db from "../config/Database.js";
 const {DataTypes} = Sequelize;
 
 const Program = db.define('program',{
-    judul_program: DataTypes.STRING
+    judul_program: DataTypes.STRING,
+    url: DataTypes.STRING
 },{
     freezeTableName:true
 });

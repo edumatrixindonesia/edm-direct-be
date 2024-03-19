@@ -53,17 +53,17 @@ CREATE TABLE `whatsapps` (
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `gurus` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `deskripsi` varchar(255) DEFAULT NULL,
-  `universitas` varchar(255) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `img` varchar(255) DEFAULT NULL,
-  `url` varchar(255) DEFAULT NULL,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- CREATE TABLE `gurus` (
+--   `id` int(11) NOT NULL,
+--   `name` varchar(255) DEFAULT NULL,
+--   `deskripsi` varchar(255) DEFAULT NULL,
+--   `universitas` varchar(255) DEFAULT NULL,
+--   `image` varchar(255) DEFAULT NULL,
+--   `img` varchar(255) DEFAULT NULL,
+--   `url` varchar(255) DEFAULT NULL,
+--   `createdAt` datetime NOT NULL,
+--   `updatedAt` datetime NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `matapelajaran` (
   `id` int(11) NOT NULL,
@@ -81,6 +81,14 @@ CREATE TABLE `kota` (
   `slug` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `kota` (
+  `id` int(11) NOT NULL,
+  `kota` varchar(255) DEFAULT NULL,
+  `slug` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -173,9 +181,10 @@ CREATE TABLE `pilihankelas` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `deskripsi` varchar(255) DEFAULT NULL,
+  `universitas` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
-  `tags` varchar(255) DEFAULT NULL,
+  `tagId` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -232,7 +241,7 @@ CREATE TABLE `testimoni` (
 
 CREATE TABLE `guruthirdparty` (
   `id` int(11) NOT NULL,
-  `image` varchar(255) DEFAULT NULL,
+  `imageBg` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
@@ -262,7 +271,7 @@ INSERT INTO `whatsapps` (`id`, `name`, `nomor`, `createdAt`, `updatedAt`) VALUES
 (6, 'Kak Iva', '+6282174144728', '2022-03-29 03:23:37', '2022-03-29 03:23:37'),
 
 -- GURU
-INSERT INTO `gurus` (`id`, `name`, `image`, `universitas`, `deskripsi`, `url`, `createdAt`, `updatedAt`) VALUES
+-- INSERT INTO `gurus` (`id`, `name`, `image`, `universitas`, `deskripsi`, `url`, `createdAt`, `updatedAt`) VALUES
 
 -- MATA PELAJARAN
 INSERT INTO `matapelajaran` (`id`, `name`, `slug`, `createdAt`, `updatedAt`) VALUES
@@ -301,7 +310,7 @@ INSERT INTO `pilihanprogram` (`id`, `judul_program`, `link`, `createdAt`, `updat
 INSERT INTO `promo`(`id`, `image`, `url`, `createdAt`, `updateAt`) VALUES
 
 -- PILIHAN KELAS
-INSERT INTO `kelas`(`id`, `name`, `deskripsi`, `image`, `tags`, `url`, `createdAt`, `updateAt`) VALUES
+INSERT INTO `kelas`(`id`, `name`, `deskripsi`, `image`, `tagId`, `url`, `createdAt`, `updateAt`) VALUES
 
 -- TAGS
 INSERT INTO `layanan`(`id`, `tags`, `createdAt`, `updateAt`) VALUES
@@ -316,7 +325,7 @@ INSERT INTO `kota`(`id`, `jenjang_pendidikan`, `jangkauan_kota`, `image`, `url`,
 INSERT INTO `gurus` (`id`, `name_siswa`, `image`, `judul_testi`, `deskripsi`, `url`, `createdAt`, `updatedAt`) VALUES
 
 -- THIRD PARTY GURU
-INSERT INTO `gurus` (`id`, `image`, `url`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `gurus` (`id`, `imgesbg`, `url`, `createdAt`, `updatedAt`) VALUES
 
 -- Indexes for dumped tables
 --
@@ -333,8 +342,8 @@ ALTER TABLE `reservasis`
 ALTER TABLE `whatsapps`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `gurus`
-  ADD PRIMARY KEY (`id`);
+-- ALTER TABLE `gurus`
+--   ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `matapelajaran`
   ADD PRIMARY KEY (`id`);
@@ -409,9 +418,9 @@ ALTER TABLE `whatsapps`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
-ALTER TABLE `gurus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-COMMIT;
+-- ALTER TABLE `gurus`
+--   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+-- COMMIT;
 
 ALTER TABLE `matapelajaran`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;

@@ -14,7 +14,7 @@ POST http://localhost:8000/login
 Content-Type: application/json
 
 {
-    "email": "kadek1@gmail.com",
+    "email": "kadek@gmail.com",
     "password": "123456"
 }
 
@@ -28,3 +28,14 @@ GET http://localhost:8000/token
 
 ###
 DELETE http://localhost:8000/logout
+
+
+
+###
+POST http://localhost:8000/mapelwilayah
+Content-Type: application/json
+
+{
+    "mapel": "PKN",
+    "slug": "pkn"
+}

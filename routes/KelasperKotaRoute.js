@@ -9,9 +9,9 @@ import {
 
 const router = express.Router();
 
-router.get("/kelasperkota", getKelasperKota);
+router.get("/kelasperkota/:id", getKelasperKota);
 router.get("/kelasperkota/:id", getKelasperKotaById);
-router.post("/kelasperkota", saveKelasperKota);
+router.post("/kelasperkota/:id", saveKelasperKota);
 router.patch("/kelasperkota/:id", updateKelasperKota);
 router.delete("/kelasperkota/:id", deleteKelasperKota);
 

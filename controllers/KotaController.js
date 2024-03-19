@@ -140,3 +140,101 @@ export const deleteKota = async (req, res) => {
     console.log(error.message);
   }
 };
+
+
+// import Kota from "../models/KotaModel.js";
+
+// export const getKota = async (req, res) => {
+//   try {
+//     const response = await Kota.findAll({
+//       attributes: ["uuid", "kota", "slug"],
+//     });
+//     res.status(200).json(response);
+//   } catch (error) {
+//     res.status(500).json({ msg: error.message });
+//   }
+// };
+
+// export const getKotaById = async (req, res) => {
+//   try {
+//     const response = await Kota.findOne({
+//       attributes: ["uuid", "kota", "slug"],
+//       where: {
+//         uuid: req.params.id,
+//       },
+//     });
+//     res.status(200).json(response);
+//   } catch (error) {
+//     res.status(500).json({ msg: error.message });
+//   }
+// };
+
+// export const createKota = async (req, res) => {
+//   const { kota, slug} = req.body;
+//   try {
+//     await Kota.create({
+//       kota: kota,
+//       slug: slug,
+//     });
+//     res.status(201).json({ msg: "Register Berhasil" });
+//   } catch (error) {
+//     res.status(400).json({ msg: error.message });
+//   }
+// };
+
+// export const updateKota = async (req, res) => {
+//   const user = await Kota.findOne({
+//     where: {
+//       uuid: req.params.id,
+//     },
+//   });
+//   if (!user) return res.status(404).json({ msg: "User tidak ditemukan" });
+//   const { kota, slug } = req.body;
+//   let hashPassword;
+//   if (password === "" || password === null) {
+//     hashPassword = user.password;
+//   } else {
+
+//   }
+//   if (password !== confPassword)
+//     return res
+//       .status(400)
+//       .json({ msg: "Password dan Confirm Password tidak cocok" });
+//   try {
+//     await Kota.update(
+//       {
+//         kota: kota,
+//         slug: slug,
+//         password: hashPassword,
+//         role: role,
+//       },
+//       {
+//         where: {
+//           id: user.id,
+//         },
+//       }
+//     );
+//     res.status(200).json({ msg: "User Updated" });
+//   } catch (error) {
+//     res.status(400).json({ msg: error.message });
+//   }
+// };
+
+// export const deleteKota = async (req, res) => {
+//     const user = await Kota.findOne({
+//         where: {
+//             uuid: req.params.id
+//         }
+//     });
+//     if(!user) return res.status(404).json({msg: "User tidak ditemukan"});
+//     try {
+//         await Kota.destroy({
+//             where:{
+//                 id: user.id
+//             }
+//         });
+//         res.status(200).json({msg: "User Deleted"});
+//     } catch (error) {
+//         res.status(400).json({msg: error.message});
+//     }
+// };

@@ -27,13 +27,11 @@ export const getThirdPartyGuruById = async (req, res) => {
 export const saveThirdPartyGuru = (req, res) => {
   if (req.files === null)
     return res.status(400).json({ msg: "No File Uploaded" });
-  const name = req.body?.title;
-  const slug = req.body?.slug;
   const file = req.files?.file;
   const fileSize = file?.data?.length;
   const ext = path.extname(file?.name);
   const fileName = file.md5 + ext;
-  const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
+  const url = `${req.protocol}://${req.get("host")}/bgmt/${fileName}`;
   const allowedType = [".png", ".jpg", ".jpeg"];
 
   if (!allowedType.includes(ext.toLowerCase()))
@@ -41,12 +39,10 @@ export const saveThirdPartyGuru = (req, res) => {
   if (fileSize > 5000000)
     return res.status(422).json({ msg: "Image must be less than 5 MB" });
 
-  file.mv(`./public/images/${fileName}`, async (err) => {
+  file.mv(`./public/bgmt/${fileName}`, async (err) => {
     if (err) return res.status(500).json({ msg: err.message });
     try {
       await ThirdPartyGuru.create({
-        name: name,
-        slug: slug,
         image: fileName,
         url: url,
       });
@@ -80,15 +76,15 @@ export const updateThirdPartyGuru = async (req, res) => {
     if (fileSize > 5000000)
       return res.status(422).json({ msg: "Image must be less than 5 MB" });
 
-    const filepath = `./public/images/${thirdpartyguru.image}`;
+    const filepath = `./public/bgmt/${thirdpartyguru.image}`;
     fs.unlinkSync(filepath);
 
-    file.mv(`./public/images/${fileName}`, (err) => {
+    file.mv(`./public/bgmt/${fileName}`, (err) => {
       if (err) return res.status(500).json({ msg: err.message });
     });
   }
   const name = req.body.title;
-  const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
+  const url = `${req.protocol}://${req.get("host")}/bgmt/${fileName}`;
 
   try {
     await ThirdPartyGuru.update(
@@ -114,7 +110,7 @@ export const deleteThirdPartyGuru = async (req, res) => {
   if (!thirdpartyguru) return res.status(404).json({ msg: "No Data Found" });
 
   try {
-    const filepath = `./public/images/${thirdpartyguru.image}`;
+    const filepath = `./public/bgmt/${thirdpartyguru.image}`;
     fs.unlinkSync(filepath);
     await ThirdPartyGuru.destroy({
       where: {

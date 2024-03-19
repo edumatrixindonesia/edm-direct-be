@@ -1,10 +1,20 @@
 import IbuKota from "../models/IbuKotaKabModel.js";
 import path from "path";
 import fs from "fs";
+import Kota from "../models/KotaModel.js";
 
 export const getIbuKota = async (req, res) => {
   try {
-    const response = await IbuKota.findAll();
+    const kota = await Kota.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+    const response = await IbuKota.findAll({
+      where: {
+        kota_id: kota.id,
+      },
+    });
     res.json(response);
   } catch (error) {
     console.log(error.message);
@@ -24,39 +34,44 @@ export const getIbuKotaById = async (req, res) => {
   }
 };
 
-export const saveIbuKota = (req, res) => {
-  if (req.files === null)
-    return res.status(400).json({ msg: "No File Uploaded" });
+export const saveIbuKota = async (req, res) => {
+  const kota = await Kota.findOne({
+    where: {
+      id: req.params.id,
+    },
+  });
+  // if (req.files === null)
+  //   return res.status(400).json({ msg: "No File Uploaded" });
   const kota_kabupaten = req.body.kota_kabupaten;
   const slug = req.body.slug;
-  const file = req.files.file;
-  const fileSize = file.data.length;
-  const kota_id = req.files.kota_id;
-  const ext = path.extname(file.name);
-  const fileName = file.md5 + ext;
-  const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
-  const allowedType = [".png", ".jpg", ".jpeg"];
+  // const file = req.files.file;
+  // const fileSize = file.data.length;
+  const kota_id = kota.id;
+  // const ext = path.extname(file.name);
+  // const fileName = file.md5 + ext;
+  // const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
+  // const allowedType = [".png", ".jpg", ".jpeg"];
 
-  if (!allowedType.includes(ext.toLowerCase()))
-    return res.status(422).json({ msg: "Invalid Images" });
-  if (fileSize > 5000000)
-    return res.status(422).json({ msg: "Image must be less than 5 MB" });
+  // if (!allowedType.includes(ext.toLowerCase()))
+  //   return res.status(422).json({ msg: "Invalid Images" });
+  // if (fileSize > 5000000)
+  //   return res.status(422).json({ msg: "Image must be less than 5 MB" });
 
-  file.mv(`./public/images/${fileName}`, async (err) => {
-    if (err) return res.status(500).json({ msg: err.message });
+  // file.mv(`./public/images/${fileName}`, async (err) => {
+    // if (err) return res.status(500).json({ msg: err.message });
     try {
       await IbuKota.create({
         kota_kabupaten: kota_kabupaten,
         slug: slug,
-        image: fileName,
-        url: url,
-        kota_id: kota_id
+        // image: fileName,
+        // url: url,
+        kota_id: kota_id,
       });
       res.status(201).json({ msg: "IbuKota Created Successfuly" });
     } catch (error) {
       console.log(error.message);
     }
-  });
+  // });
 };
 
 export const updateIbuKota = async (req, res) => {
@@ -110,7 +125,7 @@ export const updateIbuKota = async (req, res) => {
 export const deleteIbuKota = async (req, res) => {
   const ibukota = await IbuKota.findOne({
     where: {
-      id: req.params.id
+      id: req.params.id,
     },
   });
   if (!ibukota) return res.status(404).json({ msg: "No Data Found" });

@@ -1,21 +1,30 @@
-import {Sequelize} from "sequelize";
-import db from "../config/Database.js";
+import { Sequelize } from "sequelize";
+import db from "../config/Database.js"
+import imageGuru from "../models/ThirdParty/ThirdPartyGuruModel.js";
 
-const {DataTypes} = Sequelize;
+const {DataTypes} = Sequelize
 
-const User = db.define('gurus',{
+const Guru = db.define('guru', {
     name: DataTypes.STRING,
     deskripsi: DataTypes.STRING,
     topTitle: DataTypes.STRING,
-    universitas : DataTypes.STRING,
+    universitas: DataTypes.STRING,
     image: DataTypes.STRING,
+    image2: DataTypes.STRING, 
     url: DataTypes.STRING,
-},{
-    freezeTableName:true
+    url2: DataTypes.STRING,
+    tagId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "tags",
+        key: "id",
+      },
+    },
+}, {
+    freezeTableName: true
 });
 
-export default User;
+imageGuru.hasMany(Guru)
+Guru.belongsTo(imageGuru, {foreignKey: 'imageId'})
 
-(async()=>{
-    await db.sync();
-})();
+export default Guru;

@@ -1,4 +1,5 @@
 import Guru from "../models/GuruModel.js";
+import Tags from "../models/Tags/TagsKedinasanModel.js";
 import path from "path";
 import fs from "fs";
 
@@ -24,18 +25,77 @@ export const getGuruById = async (req, res) => {
   }
 };
 
-export const saveGuru = (req, res) => {
+// export const saveGuru = async (req, res) => {
+//   const img = await Image.findOne({
+//     where: {
+//       id: req.params.id,
+//     },
+//   });
+
+//   if (req.files === null)
+//     return res.status(400).json({ msg: "No File Uploaded" });
+//   const name = req.body.title;
+//   const deskripsi = req.body.deskripsi;
+//   const universitas = req.body.universitas;
+//   const topTitle = req.body.topTitle;
+//   const guru_id = img.id;
+//   const file = req.files?.file;
+//   const fileSize = file?.data?.length;
+//   const ext = path?.extname(file?.name);
+//   const fileName = file?.md5 + ext;
+//   const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
+//   const allowedType = [".png", ".jpg", ".jpeg"];
+
+//   if (!allowedType.includes(ext.toLowerCase()))
+//     return res.status(422).json({ msg: "Invalid Images" });
+//   if (fileSize > 5000000)
+//     return res.status(422).json({ msg: "Image must be less than 5 MB" });
+
+//   file.mv(`./public/images/${fileName}`, async (err) => {
+//     if (err) return res.status(500).json({ msg: err.message });
+//     try {
+//       await Guru.create({
+//         name: name,
+//         deskripsi: deskripsi,
+//         universitas: universitas,
+//         topTitle: topTitle,
+//         image: fileName,
+//         url: url,
+//         guru_id: guru_id,
+//       });
+//       res.status(201).json({ msg: "Guru Created Successfuly" });
+//     } catch (error) {
+//       console.log(error.message);
+//     }
+//   });
+// };
+
+// PERBAIKAN
+export const saveGuru = async (req, res) => {
+  const tags = await Tags.findOne({
+    where: {
+      id: req.params.id,
+    },
+  });
+
   if (req.files === null)
     return res.status(400).json({ msg: "No File Uploaded" });
   const name = req.body.title;
   const deskripsi = req.body.deskripsi;
-  const universitas= req.body.universitas;
-  const topTitle= req.body.topTitle;
-  const file = req.files?.file;
-  const fileSize = file?.data?.length;
-  const ext = path?.extname(file?.name);
-  const fileName = file?.md5 + ext;
+  const universitas = req.body.universitas;
+  const topTitle = req.body.topTitle;
+  const tagId = tags.id;
+  const file1 = req.files?.file1;
+  const fileSize = file1?.data?.length;
+  const ext = path?.extname(file1?.name);
+  const fileName = file1?.md5 + ext;
   const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
+
+  const file2 = req.files?.file2;
+  const fileSize2 = file2?.data?.length;
+  const ext2 = path?.extname(file2?.name);
+  const fileName2 = file2?.md5 + ext;
+  const url2 = `${req.protocol}://${req.get("host")}/images/${fileName2}`;
   const allowedType = [".png", ".jpg", ".jpeg"];
 
   if (!allowedType.includes(ext.toLowerCase()))
@@ -43,22 +103,35 @@ export const saveGuru = (req, res) => {
   if (fileSize > 5000000)
     return res.status(422).json({ msg: "Image must be less than 5 MB" });
 
-  file.mv(`./public/images/${fileName}`, async (err) => {
+  if (!allowedType.includes(ext2.toLowerCase()))
+    return res.status(422).json({ msg: "Invalid Images" });
+  if (fileSize2 > 5000000)
+    return res.status(422).json({ msg: "Image must be less than 5 MB" });
+
+  file1.mv(`./public/images/${fileName}`, async (err) => {
     if (err) return res.status(500).json({ msg: err.message });
-    try {
-      await Guru.create({
-        name: name,
-        deskripsi: deskripsi,
-        universitas: universitas,
-        topTitle: topTitle,
-        image: fileName,
-        url: url,
-      });
-      res.status(201).json({ msg: "Guru Created Successfuly" });
-    } catch (error) {
-      console.log(error.message);
-    }
   });
+
+  file2.mv(`./public/images/${fileName2}`, async (err) => {
+    if (err) return res.status(500).json({ msg: err.message });
+  });
+
+  try {
+    await Guru.create({
+      name: name,
+      deskripsi: deskripsi,
+      universitas: universitas,
+      topTitle: topTitle,
+      image: fileName,
+      url: url,
+      image2: fileName2,
+      url2: url2,
+      tagId: tagId,
+    });
+    res.status(201).json({ msg: "Guru Created Successfuly" });
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 export const updateGuru = async (req, res) => {

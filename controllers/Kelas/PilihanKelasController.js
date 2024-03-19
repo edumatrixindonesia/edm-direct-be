@@ -1,11 +1,24 @@
 import PilihanKelas from "../../models/Kelas/PilihanKelasModel.js";
 import path from "path";
 import fs from "fs";
+import Tags from "../../models/Tags/TagsKedinasanModel.js";
 
 export const getPilihanKelas = async (req, res) => {
   try {
     const response = await PilihanKelas.findAll();
     res.json(response);
+
+    //tambahan karena relasi dengan id
+    if (response.tags) {
+      let tags = await Tags.findOne({
+        name: { $regex: response.tags, $options: "i" },
+      });
+      if (tags) {
+        response = { ...response, tags: tags._id };
+      } else {
+        delete response.tags;
+      }
+    }
   } catch (error) {
     console.log(error.message);
   }
@@ -24,12 +37,33 @@ export const getPilihanKelasById = async (req, res) => {
   }
 };
 
-export const savePilihanKelas = (req, res) => {
+export const savePilihanKelas = async (req, res) => {
+  try {
+    const response = await PilihanKelas.findAll();
+    res.json(response);
+
+    //tambahan karena relasi dengan id
+    if (response.tags) {
+      let tags = await Tags.findOne({
+        name: { $regex: response.tags, $options: "i" },
+      });
+      if (tags) {
+        response = { ...response, tags: tags._id };
+      } else {
+        delete response.tags;
+      }
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
   if (req.files === null)
     return res.status(400).json({ msg: "No File Uploaded" });
   const name = req.body?.title;
   const deskripsi = req.body?.deskripsi;
+  const universitas = req.body.universitas;
   const tags = req.body.tags;
+  const whatsapp = req.body.whatsapp
+  const detail = req.body.detail
   const file = req.files?.file;
   const fileSize = file?.data?.length;
   const ext = path.extname(file?.name);
@@ -49,7 +83,10 @@ export const savePilihanKelas = (req, res) => {
         name: name,
         deskripsi: deskripsi,
         image: fileName,
+        universitas: universitas,
         tags: tags,
+        whatsapp: whatsapp,
+        detail:detail,
         url: url,
       });
       res.status(201).json({ msg: "PilihanKelas Created Successfuly" });

@@ -4,8 +4,28 @@ import db from "../../config/Database.js";
 const {DataTypes} = Sequelize;
 
 const GuruThirdParty = db.define('guruthirdparty',{
-    image: DataTypes.STRING,
-    url: DataTypes.STRING
+    uuid: {
+        type: DataTypes.STRING,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
+        validate: {
+            notEmpty: true
+        }
+    },
+    image: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+        }
+    },
+    url: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+        }
+    },
 },{
     freezeTableName:true
 });

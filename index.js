@@ -1,60 +1,3 @@
-// import express from "express"
-// import db from "./config/Database.js"
-// import router from "./routes/index.js"
-// import cookieParser from "cookie-parser"
-// import dotenv from "dotenv"
-// import cors from "cors"
-// import ReservasiRoute from "./routes/ReservasiRoute.js"
-// // import OfficeRoute from "./routes/OfficeRoute.js"
-// import SequelizeStore from "connect-session-sequelize"
-// import session from "express-session";
-
-// import WhatsappRoute from "./routes/WaRoute.js"
-// dotenv.config()
-
-// const app = express();
-
-// try {
-//     await db.authenticate();
-//     console.log('Database connect...');
-// } catch (error) {
-//     console.log(error);
-// }
-
-// const sessionStore = SequelizeStore(session.Store)
-
-// const store = new sessionStore({
-//     db:db
-// })
-
-// app.use(session({
-//     secret: 'somevalue',
-//     // secret: process.env.SESS_SECRET,
-//     resave: false,
-//     saveUninitialized: true,
-//     store: store,
-//     cookie: {
-//         secure: 'auto'
-//     }
-// }))
-
-// app.use(cors({credentials:true, origin: 'http://localhost:3000'}))
-// // app.use(cors({ origin: '*'}))
-// app.use(cookieParser());
-// app.use(express.json());
-// app.use(router)
-
-// app.use(ReservasiRoute);
-// app.use(WhatsappRoute);
-// // app.use(OfficeRoute);
-
-// app.listen(8000, ()=> console.log("Server Running"))
-
-
-
-//================================
-
-
 import express from "express";
 import cors from "cors";
 import FileUpload from "express-fileupload";
@@ -66,12 +9,9 @@ import ReservasiRoute from "./routes/ReservasiRoute.js"
 import db from "./config/Database.js";
 import path from 'path'
 import { fileURLToPath } from "url";
-// import AuthRoute from "./routes/AuthRoute.js"
-// import OfficeRoute from "./routes/OfficeRoute.js"
 import WhatsappRoute from "./routes/WaRoute.js"
 import UserRoute from "./routes/index.js"
 import OfficeRoute from "./routes/OfficeRoute.js"
-import GuruRoute from "./routes/GuruRoute.js"
 import AsalSekolah from "./routes/AsalSekolahRoute.js"
 import MapelRoute from "./routes/MapelRoute.js"
 import KotaRoute from "./routes/KotaRoute.js"
@@ -84,6 +24,12 @@ import FiturProgramRoute from "./routes/FiturProgramRoute.js"
 import PilihanProgramRoute from "./routes/PilihanProgramRoute.js"
 import PromoRoute from "./routes/PromoRoute.js"
 import TestimoniRoute from "./routes/TestimoniRoute.js"
+import KotaTestRoute from "./routes/KotaTestRoute.js"
+import MapelWilayahRoute from "./routes/Mapel-WilayahRoute.js"
+import GuruRoute from "./routes/GuruRoute.js"
+import KecamatanRoute from "./routes/KecamatanRoute.js"
+import SliderHeaderRoute from "./routes/SliderHeaderRoute.js"
+import SliderHeaderRoute2 from "./routes/SliderHeaderRoute2.js"
 
 //TAGS
 import TagsRoute from "./routes/Tags/TagsKedinasanRoute.js"
@@ -92,6 +38,12 @@ import KedinasanRoute from "./routes/Kelas/PilihanKelasRoute.js"
 import IbuKotaKab from "./routes/IbuKotaKabRoute.js"
 import KelasperKotaRoute from "./routes/KelasperKotaRoute.js"
 import ThirdPartyGuruRoute from "./routes/ThirdParty/ThirdPartyGuruRoute.js"
+import BestProgramRoute from "./routes/Program/BestProgramRoute.js"
+import BestProgramRoute2 from "./routes/Program/BestProgramRoute2.js"
+import PilihanKelasPolriRoute from "./routes/Kelas/PilihanKelasPolriRoute.js"
+import PilihanKelasCpnsRoute from "./routes/Kelas/PilihanKelasCpnsRoute.js"
+import PilihanKelasOsnRoute from "./routes/Kelas/PilihanKelasOsnRoute.js"
+import PilihanKelasPrivatRoute from "./routes/Kelas/PilihanKelasPrivatRoute.js"
 
 
 dotenv.config();
@@ -106,13 +58,9 @@ const store = new sessionStore({
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// app.get("/*", function(req, res) {
-//     res.sendFile(path.join(__dirname));
-//   });
 
 app.use(session({
     secret: 'somevalue',
-    // secret: process.env.SESS_SECRET,
     resave: false,
     saveUninitialized: true,
     store: store,
@@ -121,7 +69,6 @@ app.use(session({
     }
 }))
 
-// app.use(cors());
 app.set('views', path.join(__dirname, 'views'));
 app.use(cors({
     credentials: true,
@@ -137,7 +84,6 @@ app.use(ReservasiRoute)
 app.use(UserRoute)
 app.use(WhatsappRoute)
 app.use(OfficeRoute)
-app.use(GuruRoute)
 app.use(AsalSekolah)
 app.use(MapelRoute)
 app.use(KotaRoute)
@@ -151,6 +97,14 @@ app.use(PilihanProgramRoute)
 app.use(PromoRoute)
 app.use(IbuKotaKab)
 app.use(TestimoniRoute)
+app.use(KotaTestRoute)
+app.use(MapelWilayahRoute)
+app.use(GuruRoute)
+app.use(KecamatanRoute)
+app.use(SliderHeaderRoute)
+app.use(SliderHeaderRoute2)
+app.use(BestProgramRoute);
+app.use(BestProgramRoute2);
 
 //TAGS
 app.use(TagsRoute);
@@ -158,6 +112,10 @@ app.use(TagsRoute);
 //KELAS
 app.use(KedinasanRoute);
 app.use(KelasperKotaRoute);
+app.use(PilihanKelasPolriRoute);
+app.use(PilihanKelasCpnsRoute);
+app.use(PilihanKelasOsnRoute);
+app.use(PilihanKelasPrivatRoute);
 
 //THIRD PARTY
 app.use(ThirdPartyGuruRoute)
