@@ -31,6 +31,27 @@ import KecamatanRoute from "./routes/KecamatanRoute.js";
 import SliderHeaderRoute from "./routes/SliderHeaderRoute.js";
 import SliderHeaderRoute2 from "./routes/SliderHeaderRoute2.js";
 
+// PROGRAM
+// TNI
+import SliderHeaderTni from "./routes/Program/BimbelTniPolri/SliderHeaderTniRoute.js";
+import BestProgramTni from "./routes/Program/BimbelTniPolri/BestProgramTniRoute.js";
+import BestProgramTni2 from "./routes/Program/BimbelTniPolri/BestProgramTniRoute2.js";
+import GaleriKegiatanTni from "./routes/Program/BimbelTniPolri/GaleriKegiatanTniRoute.js";
+import Kotatni from "./routes/Program/BimbelTniPolri/KotaTniRoute.js";
+import Kelastni from "./routes/Program/BimbelTniPolri/KelasTniRoute.js";
+import KelasperKotaTni from "./routes/Program/BimbelTniPolri/KelasperKotaTniRoute.js"
+import FaqTni from "./routes/Program/BimbelTniPolri/FaqTniRoute.js"
+// SNBT
+import SliderHeaderSnbt from "./routes/Program/BimbelSnbt/SliderHeaderSnbtRoute.js"
+import BestProgramSnbt from "./routes/Program/BimbelSnbt/BestProgramSnbtRoute.js"
+import KotaSnbt from "./routes/Program/BimbelSnbt/KotaSnbtRoute.js"
+import KelasSnbt from "./routes/Program/BimbelSnbt/KelasSnbtRoute.js"
+import BestProgramSnbt2 from "./routes/Program/BimbelSnbt/BestProgramSnbtRoute2.js"
+import SliderHeaderSnbt2 from "./routes/Program/BimbelSnbt/SliderHeaderSnbtRoute2.js"
+// SUPERCAMP
+import SliderHeaderSupercamp from "./routes/Program/BimbelSupercamp/SliderHeaderSupercampRoute.js"
+import SliderHeaderSupercamp2 from "./routes/Program/BimbelSupercamp/SliderHeaderSupercampRoute2.js"
+
 //TAGS
 import TagsRoute from "./routes/Tags/TagsKedinasanRoute.js";
 //KELAS
@@ -44,7 +65,7 @@ import PilihanKelasPolriRoute from "./routes/Kelas/PilihanKelasPolriRoute.js";
 import PilihanKelasCpnsRoute from "./routes/Kelas/PilihanKelasCpnsRoute.js";
 import PilihanKelasOsnRoute from "./routes/Kelas/PilihanKelasOsnRoute.js";
 import PilihanKelasPrivatRoute from "./routes/Kelas/PilihanKelasPrivatRoute.js";
-import { title } from "process";
+import AboutUsRoute from "./routes/AboutUsRoute.js";
 
 dotenv.config();
 
@@ -108,6 +129,7 @@ app.use(SliderHeaderRoute);
 app.use(SliderHeaderRoute2);
 app.use(BestProgramRoute);
 app.use(BestProgramRoute2);
+app.use(AboutUsRoute);
 
 //TAGS
 app.use(TagsRoute);
@@ -120,12 +142,32 @@ app.use(PilihanKelasCpnsRoute);
 app.use(PilihanKelasOsnRoute);
 app.use(PilihanKelasPrivatRoute);
 
+//PROGRAM TNI
+app.use(SliderHeaderTni);
+app.use(BestProgramTni);
+app.use(BestProgramTni2);
+app.use(GaleriKegiatanTni);
+app.use(Kotatni);
+app.use(Kelastni);
+app.use(KelasperKotaTni)
+app.use(FaqTni)
+//PROGRAM SNBT
+app.use(SliderHeaderSnbt)
+app.use(SliderHeaderSnbt2)
+app.use(BestProgramSnbt)
+app.use(KotaSnbt)
+app.use(KelasSnbt)
+app.use(BestProgramSnbt2)
+//PROGRAM SUPERCAMP
+app.use(SliderHeaderSupercamp)
+app.use(SliderHeaderSupercamp2)
+
 //THIRD PARTY
 app.use(ThirdPartyGuruRoute);
 
-app.listen(process.env.APP_PORT, ()=> {
-    console.log("Server up and running...");
-})
+app.listen(process.env.APP_PORT, () => {
+  console.log("Server up and running...");
+});
 
 // router.get('/', (req, res) => {
 //     res.send(" Express Homepage is running...");
