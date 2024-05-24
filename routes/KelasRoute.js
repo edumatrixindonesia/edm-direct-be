@@ -10,7 +10,7 @@ import {
 const router = express.Router();
 
 router.get("/kelas", getKelas);
-router.get("/kelas/:id", getKelasById);
+router.get("/kelas/:slug", getKelasById);
 router.post("/kelas", saveKelas);
 router.patch("/kelas/:id", updateKelas);
 router.delete("/kelas/:id", deleteKelas);

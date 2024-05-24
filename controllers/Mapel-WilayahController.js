@@ -6,9 +6,14 @@ import db from "../config/Database.js";
 
 export const getmapelWilayah = async (req, res) => {
   try {
+    const mapel1 = await Mapel.findOne({
+      where: {
+        slug: req.params.slug,
+      },
+    });
     const kota = await db.query(
-      "SELECT kota.kota as namaKota, mapelwilayah.mapel_id as mapelId, mapelwilayah.kota_id, mata_pelajaran.name as namaMapel FROM mapelwilayah JOIN kota ON mapelwilayah.kota_id = kota.id JOIN mata_pelajaran ON mapelwilayah.mapel_id = mata_pelajaran.id WHERE mapelwilayah.mapel_id=" +
-        req.params.id
+      "SELECT kota.kota as namaKota, kota.slug as slugKota, mapelwilayah.mapel_id as mapelId, mapelwilayah.kota_id, mata_pelajaran.name as namaMapel, mata_pelajaran.slug as slugMapel FROM mapelwilayah JOIN kota ON mapelwilayah.kota_id = kota.id JOIN mata_pelajaran ON mapelwilayah.mapel_id = mata_pelajaran.id WHERE mapelwilayah.mapel_id=" +
+      mapel1.id
     );
     res.json(kota[0]);
   } catch (error) {
@@ -18,12 +23,21 @@ export const getmapelWilayah = async (req, res) => {
 
 export const getmapelWilayahById = async (req, res) => {
   try {
-    const response = await mapelWilayah.findOne({
+    const mapel1 = await Mapel.findOne({
       where: {
-        id: req.params.id,
+        slug: req.params.slug,
       },
     });
-    res.json(response);
+    const kota = await db.query(
+      "SELECT kota.kota as namaKota, kota.slug as slugKota, mapelwilayah.mapel_id as mapelId, mapelwilayah.kota_id, mata_pelajaran.name as namaMapel, mata_pelajaran.slug as slugMapel FROM mapelwilayah JOIN kota ON mapelwilayah.kota_id = kota.id JOIN mata_pelajaran ON mapelwilayah.mapel_id = mata_pelajaran.id WHERE mapelwilayah.mapel_id=" +
+      mapel1.id
+    );
+    // const response = await mapelWilayah.findOne({
+    //   where: {
+    //     id: req.params.id,
+    //   },
+    // });
+    res.json(kota);
   } catch (error) {
     console.log(error.message);
   }

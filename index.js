@@ -41,6 +41,8 @@ import Kotatni from "./routes/Program/BimbelTniPolri/KotaTniRoute.js";
 import Kelastni from "./routes/Program/BimbelTniPolri/KelasTniRoute.js";
 import KelasperKotaTni from "./routes/Program/BimbelTniPolri/KelasperKotaTniRoute.js"
 import FaqTni from "./routes/Program/BimbelTniPolri/FaqTniRoute.js"
+import TestimoniTni from "./routes/Program/BimbelTniPolri/TestimoniTniRoute.js"
+import GuruTni from "./routes/Program/BimbelTniPolri/GuruTniRoute.js"
 // SNBT
 import SliderHeaderSnbt from "./routes/Program/BimbelSnbt/SliderHeaderSnbtRoute.js"
 import BestProgramSnbt from "./routes/Program/BimbelSnbt/BestProgramSnbtRoute.js"
@@ -51,6 +53,25 @@ import SliderHeaderSnbt2 from "./routes/Program/BimbelSnbt/SliderHeaderSnbtRoute
 // SUPERCAMP
 import SliderHeaderSupercamp from "./routes/Program/BimbelSupercamp/SliderHeaderSupercampRoute.js"
 import SliderHeaderSupercamp2 from "./routes/Program/BimbelSupercamp/SliderHeaderSupercampRoute2.js"
+// LPDP
+import SliderHeaderLpdp from "./routes/Program/BimbelLpdp/SliderHeaderLpdpRoute.js"
+import SliderHeaderLpdp2 from "./routes/Program/BimbelLpdp/SliderHeaderLpdpRoute2.js"
+// PRIVAT
+import SliderHeaderPrivat from "./routes/Program/BimbelPrivat/SliderHeaderPrivatRoute.js"
+import SliderHeaderPrivat2 from "./routes/Program/BimbelPrivat/SliderHeaderPrivatRoute2.js"
+import KelasPrivat from "./routes/Program/BimbelPrivat/KelasPrivatRoute.js"
+// CPNS
+import SliderHeaderCpns from "./routes/Program/BimbelCpns/SliderHeaderCpnsRoute.js"
+// BUMN
+import SliderHeaderBumn from "./routes/Program/BimbelBumn/SliderHeaderBumnRoute.js"
+// IGCSE
+import SliderHeaderIgcse from "./routes/Program/BimbelIgcse/SliderHeaderIgcseRoute.js"
+// IUP/KKI
+import SliderHeaderIup from "./routes/Program/BimbelIupKki/SliderHeaderIupKki.js"
+// OSN
+import SliderHeaderOsn from "./routes/Program/BimbelOsn/SliderHeaderOsnRoute.js"
+// TOEFL
+import SliderHeaderToefl from "./routes/Program/BimbelToefl/SliderHeaderToeflRoute.js"
 
 //TAGS
 import TagsRoute from "./routes/Tags/TagsKedinasanRoute.js";
@@ -151,6 +172,8 @@ app.use(Kotatni);
 app.use(Kelastni);
 app.use(KelasperKotaTni)
 app.use(FaqTni)
+app.use(TestimoniTni)
+app.use(GuruTni)
 //PROGRAM SNBT
 app.use(SliderHeaderSnbt)
 app.use(SliderHeaderSnbt2)
@@ -161,6 +184,28 @@ app.use(BestProgramSnbt2)
 //PROGRAM SUPERCAMP
 app.use(SliderHeaderSupercamp)
 app.use(SliderHeaderSupercamp2)
+//PROGRAM LPDP
+app.use(SliderHeaderLpdp)
+app.use(SliderHeaderLpdp2)
+//PROGRAM PRIVAT
+app.use(SliderHeaderPrivat)
+app.use(SliderHeaderPrivat2)
+app.use(KelasPrivat)
+//PROGRAM CPNS
+app.use(SliderHeaderCpns)
+//PROGRAM BUMN
+app.use(SliderHeaderBumn)
+//PROGRAM IGCSE
+app.use(SliderHeaderIgcse)
+//PROGRAM IUP/KKI
+app.use(SliderHeaderIup)
+//PROGRAM OSN
+app.use(SliderHeaderOsn)
+//PROGRAM TOEFL
+app.use(SliderHeaderToefl)
+
+
+
 
 //THIRD PARTY
 app.use(ThirdPartyGuruRoute);

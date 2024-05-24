@@ -9,8 +9,8 @@ import {
 
 const router = express.Router();
 
-router.get("/mapelwilayah/:id", getmapelWilayah);
-router.get("/mapelwilayah/:id", getmapelWilayahById);
+router.get("/mapelwilayah/:slug", getmapelWilayah);
+router.get("/mapelwilayah/:slug/kota/:slug", getmapelWilayahById);
 router.post("/mapelwilayah/:id", savemapelWilayah);
 router.patch("/mapelwilayah/:id", updatemapelWilayah);
 router.delete("/mapelwilayah/:id", deletemapelWilayah);

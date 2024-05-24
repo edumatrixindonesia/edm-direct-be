@@ -7,7 +7,7 @@ export const getIbuKota = async (req, res) => {
   try {
     const kota = await Kota.findOne({
       where: {
-        id: req.params.id,
+        slug: req.params.slug,
       },
     });
     const response = await IbuKota.findAll({
@@ -25,7 +25,7 @@ export const getIbuKotaById = async (req, res) => {
   try {
     const response = await IbuKota.findOne({
       where: {
-        id: req.params.id,
+        slug: req.params.slug,
       },
     });
     res.json(response);

@@ -3,7 +3,7 @@ import db from "../../../config/Database.js";
 
 const {DataTypes} = Sequelize;
 
-const bestProgramTni2 = db.define('bestprogramTni_2',{
+const bestProgramTni2 = db.define('bestprogramtni_2',{
     name: DataTypes.STRING,
     slug: DataTypes.STRING,
     image: DataTypes.STRING,

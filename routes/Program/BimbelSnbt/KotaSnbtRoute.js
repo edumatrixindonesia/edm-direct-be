@@ -10,7 +10,7 @@ import {
 const router = express.Router();
 
 router.get("/kotasnbt", getKotasnbt);
-router.get("/kotasnbt/:id", getKotasnbtById);
+router.get("/kotasnbt/:slug", getKotasnbtById);
 router.post("/kotasnbt", saveKotasnbt);
 router.patch("/kotasnbt/:id", updateKotasnbt);
 router.delete("/kotasnbt/:id", deleteKotasnbt);

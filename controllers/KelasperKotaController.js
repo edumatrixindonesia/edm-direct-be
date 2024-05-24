@@ -1,15 +1,20 @@
 import KelasperKota from "../models/KelasperKotaModel.js";
 import Kota from "../models/KotaModel.js";
-import Kelas from "../models/KelasModel.js"
+import Kelas from "../models/KelasModel.js";
 import path from "path";
 import fs from "fs";
 import db from "../config/Database.js";
 
 export const getKelasperKota = async (req, res) => {
   try {
+    const kelas1 = await Kelas.findOne({
+      where: {
+        slug: req.params.slug,
+      },
+    });
     const kota = await db.query(
-      "SELECT kota.kota as namaKota, kelasperkota.kelas_id as kelasId, kelasperkota.kota_id FROM kelasperkota JOIN kota ON kelasperkota.kota_id = kota.id JOIN kelas ON kelasperkota.kelas_id = kelas.id WHERE kelasperkota.kelas_id=" +
-        req.params.id
+      "SELECT kota.kota as namaKota, kota.slug as slugKota, kelas.slug as slugKelas, kelas.name as namaKelas, kelasperkota.kelas_id as kelasId, kelasperkota.kota_id FROM kelasperkota JOIN kota ON kelasperkota.kota_id = kota.id JOIN kelas ON kelasperkota.kelas_id = kelas.id WHERE kelasperkota.kelas_id=" +
+        kelas1.id
     );
     res.json(kota[0]);
   } catch (error) {
@@ -29,7 +34,6 @@ export const getKelasperKotaById = async (req, res) => {
     console.log(error.message);
   }
 };
-
 
 // PERBAIKAN
 export const saveKelasperKota = async (req, res) => {

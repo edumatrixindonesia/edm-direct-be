@@ -15,7 +15,7 @@ export const getKelasById = async (req, res) => {
   try {
     const response = await Kelas.findOne({
       where: {
-        id: req.params.id,
+        slug: req.params.slug,
       },
     });
     res.json(response);

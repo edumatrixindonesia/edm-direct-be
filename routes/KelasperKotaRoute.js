@@ -9,7 +9,7 @@ import {
 
 const router = express.Router();
 
-router.get("/kelasperkota/:id", getKelasperKota);
+router.get("/kelasperkota/:slug", getKelasperKota);
 router.get("/kelasperkota/:id", getKelasperKotaById);
 router.post("/kelasperkota/:id", saveKelasperKota);
 router.patch("/kelasperkota/:id", updateKelasperKota);

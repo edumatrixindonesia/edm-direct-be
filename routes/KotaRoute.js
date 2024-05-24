@@ -10,7 +10,7 @@ import {
 const router = express.Router();
 
 router.get("/kota", getKota);
-router.get("/kota/:id", getKotaById);
+router.get("/kota/:slug", getKotaById);
 router.post("/kota", saveKota);
 router.patch("/kota/:id", updateKota);
 router.delete("/kota/:id", deleteKota);

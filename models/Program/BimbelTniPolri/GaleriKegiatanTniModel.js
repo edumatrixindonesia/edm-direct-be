@@ -3,7 +3,7 @@ import db from "../../../config/Database.js";
 
 const {DataTypes} = Sequelize;
 
-const GaleriKegiatanTni = db.define('galerikegiatanTni',{
+const GaleriKegiatanTni = db.define('galerikegiatantni',{
     image: DataTypes.STRING,
     url: DataTypes.STRING
 },{

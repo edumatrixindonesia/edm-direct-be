@@ -17,7 +17,7 @@ export const getKotatniById = async (req, res) => {
   try {
     const response = await Kotatni.findOne({
       where: {
-        id: req.params.id,
+        slug: req.params.slug,
       },
     });
     res.json(response);

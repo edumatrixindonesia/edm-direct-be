@@ -17,7 +17,7 @@ export const getKotaById = async (req, res) => {
   try {
     const response = await Kota.findOne({
       where: {
-        id: req.params.id,
+        slug: req.params.slug,
       },
     });
     res.json(response);

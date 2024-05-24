@@ -17,7 +17,7 @@ export const getKotasnbtById = async (req, res) => {
   try {
     const response = await Kotasnbt.findOne({
       where: {
-        id: req.params.id,
+        slug: req.params.slug,
       },
     });
     res.json(response);

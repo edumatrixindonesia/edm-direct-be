@@ -3,7 +3,7 @@ import db from "../../../config/Database.js";
 
 const {DataTypes} = Sequelize;
 
-const SliderHeaderTni = db.define('sliderheaderTni',{
+const SliderHeaderTni = db.define('sliderheadertni',{
     image: DataTypes.STRING,
     url: DataTypes.STRING
 },{
